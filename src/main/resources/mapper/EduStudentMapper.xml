@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nue.teamnus.mapper.EduStudentMapper">
+
+    <resultMap id="studentResultMap" type="EduStudent">
+        <id property="id" column="id" />
+        <result property="name" column="name"/>
+        <result property="url" column="url"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="studentResultMap">
+        SELECT * FROM edu_student
+    </select>
+
+    <select id="selectById" resultMap="studentResultMap">
+        SELECT * FROM edu_student WHERE id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO edu_student (name, url, phone_number, password)
+        VALUES (#{name}, #{url}, #{phoneNumber}, #{password})
+    </insert>
+
+    <update id="update">
+        UPDATE edu_student
+        SET name = #{name},
+            url = #{url},
+            phone_number = #{phoneNumber},
+            password = #{password}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM edu_student WHERE id = #{id}
+    </delete>
+
+    <!-- 添加在现有SQL语句之后 -->
+    <select id="selectByName" resultMap="studentResultMap">
+        SELECT * FROM edu_student WHERE name LIKE CONCAT('%', #{name}, '%')
+    </select>
+
+</mapper>

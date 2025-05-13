@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nue.teamnus.mapper.TeachersMapper">
+    <!-- 公共字段 -->
+    <sql id="BaseTeachersField">
+        id, name, description, position
+    </sql>
+
+    <!-- 定义映射关系 -->
+    <resultMap id="TeachersResultMap" type="com.nue.teamnus.pojo.EduTeachers">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="position" property="position" />
+    </resultMap>
+
+    <!-- 查询所有教师 -->
+    <select id="selectAllTeachers" resultMap="TeachersResultMap">
+        SELECT
+            <include refid="BaseTeachersField" />
+        FROM edu_teachers
+    </select>
+
+    <!-- 根据 id 查询教师 -->
+    <select id="selectTeachersById" resultType="EduTeachers">
+        SELECT
+            <include refid="BaseTeachersField" />
+        FROM edu_teachers
+        WHERE id = #{id}
+    </select>
+</mapper>

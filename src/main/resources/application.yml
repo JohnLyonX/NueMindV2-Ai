@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: teamnus-core
+  profiles:
+    active: drive
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+  port: 8081
+
+
+# ollama 配置
+
+
+# openai(qwen)
+llm:
+  qwenMax:
+    model: qwen-max-2025-01-25
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  qwenVl:
+    model: qwen-vl-max
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+  qwenApiKey: sk-b5bd981c99654a58a8926fb67ec659be
+
+logging:
+  pattern:
+    console: logging.pattern.console=%d{MM/dd HH:mm:ss} %clr(%-5level) --- [%-15thread] %msg%n
+  level:
+    com.nue.teamnus.mapper: debug
+    dev:
+      langchain4j: debug
+      ai4j:
+        openai4j: debug
+
+
+
+upload:
+  base_path: C:/nuemindTemp
+#  over_path: /Users/liangzhanbo/Desktop/teamnus/MappingDocs/
+

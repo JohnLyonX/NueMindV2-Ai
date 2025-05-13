@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nue.teamnus.mapper.EduExamFilelibMapper">
+
+    <update id="updateById">
+        UPDATE edu_exam_filelib
+        <set>
+            <if test="studentId != null">student_id = #{studentId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="coursesName != null">courses_name = #{coursesName},</if>
+            <if test="courseChapterId != null">course_chapter_id = #{courseChapterId},</if>
+            <if test="coursesChapter != null">courses_chapter = #{coursesChapter},</if>
+            <if test="subPath != null">sub_path = #{subPath},</if>
+            <if test="correctPath != null">correct_path = #{correctPath},</if>
+            <if test="coursesId != null">courses_id = #{coursesId},</if>
+            <if test="coursesExamName != null">courses_exam_name = #{coursesExamName},</if>
+            <if test="score != null">score = #{score},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectExamResults" resultType="com.nue.teamnus.pojo.EduExamFilelib">
+        SELECT
+            id,
+            name,
+            courses_exam_name AS coursesExamName,
+            score
+        FROM edu_exam_filelib
+    </select>
+
+</mapper>

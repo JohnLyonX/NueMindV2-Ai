@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nue.teamnus.mapper.CoursesMapper">
+    <sql id="BaseCoursesField">
+        id, name, description,teacher_id,cover_image,price,status,create_time,update_time
+    </sql>
+    <resultMap id="BaseCoursesMap" type="com.nue.teamnus.pojo.EduCourses">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="teacher_id" property="teacherId"/>
+        <result column="cover_image" property="coverImage"/>
+        <result column="price" property="price"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+
+    </resultMap>
+
+    <select id="selectAll" resultType="com.nue.teamnus.pojo.EduCourses">
+        SELECT
+            <include refid="BaseCoursesField" />
+        FROM edu_courses
+    </select>
+
+</mapper>
